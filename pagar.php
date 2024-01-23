@@ -2,6 +2,11 @@
 
 require(dirname(__FILE__) . '/Openpay.php');
 
+$name     = "Jhonatan";
+$lastName = "Santiago";
+
+
+
 if (isset($_POST)) {
 
 	//SELECCIONAR EL PLAN A MESES
@@ -10,8 +15,8 @@ if (isset($_POST)) {
 
     OpenPay::setSandboxMode(true);
     $customer = array(
-        'name' => "Taylor",
-        'last_name' => "Swift",
+        'name' => $name,
+        'last_name' => $lastName,
         'phone_number' => 9991111119,
         'email' => "example@me.com",);
 
@@ -31,7 +36,21 @@ if (isset($_POST)) {
 
    $charge = $openpay->charges->create($chargeData);
 
-   var_dump($charge->status);
+   // respuesta ok = completed
+
+   // var_dump($charge->status);
+
+   $datos = array(
+   	 "id" => $charge->id,
+   	 "status" => $charge->status,
+   	 "autorizacion" => $charge->authorization,
+   	 "fechaoperacion" => $charge->operation_date
+
+   );
+
+   // var_dump($datos);
+
+   echo json_encode($datos);
 
 }
 

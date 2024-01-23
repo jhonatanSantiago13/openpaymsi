@@ -38,7 +38,11 @@ $(document).ready(function() {
                 url: 'pagar.php', //aqui va tu direccion donde esta tu funcion php
                 data: data, //aqui tus datos
                 success: function(response) {
-                console.log("respuesta", response);
+                //console.log("respuesta", response);
+
+                const datos = JSON.parse(response);
+
+                console.log("datos", datos);
 
         }
 
