@@ -2,8 +2,8 @@
 
 require(dirname(__FILE__) . '/Openpay.php');
 
-$name     = "Jhonatan";
-$lastName = "Santiago";
+$name     = "Christofer";
+$lastName = "Santiago Garcia";
 
 
 
@@ -39,6 +39,21 @@ if (isset($_POST)) {
    // respuesta ok = completed
 
    // var_dump($charge->status);
+
+   /*guardar los datos*/
+
+   $file = fopen("datos.txt", "a");
+
+   fwrite($file, "id: $charge->id" . PHP_EOL);
+   fwrite($file, "Autorizacion: $charge->authorization" . PHP_EOL);
+   fwrite($file, "Estatus: $charge->status" . PHP_EOL);
+   fwrite($file, "Cliente: $name $lastName" . PHP_EOL);
+   /*fwrite($file, "Tarjeta: $charge->status" . PHP_EOL);
+   fwrite($file, "Monto: $charge->status" . PHP_EOL);
+   fwrite($file, "MSI: $charge->status" . PHP_EOL);*/
+   fwrite($file, "Fecha: $charge->operation_date\n" . PHP_EOL);
+
+   fclose($file);
 
    $datos = array(
    	 "id" => $charge->id,
